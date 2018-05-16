@@ -1,0 +1,91 @@
+{% extends '_base_list.html' %}
+{% block table_container %}
+<div class="" id="content_start">
+    {% block content_left_head %} {% endblock %}
+    {% block table_search %}
+    <form id="search_form" method="get" action="" class="form-inline">
+        {% block search_form %}
+        <div class="col-sm-1" style="padding-left:0;padding-bottom: 4px">
+            <a href="{{ url_for('users.user_priv_create') }}" id="new_user_priv_create" class="btn btn-sm btn-primary"> 新建用户权限 </a>
+        </div>
+
+        <div class="col-sm-7 pull-right" style="padding-left:0;padding-bottom: 4px;padding-right:0;">
+            <div class="pull-right">
+                <div class="input-group">
+                    <select class="form-control input-sm m-b" style="width: auto;padding: 2px;" id="user_priv_table_length">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="100">ALL</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm m-b" id="user_priv_keyword" name="user_priv_keyword" placeholder="用户名" value="">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <a id='search_btn' type="submit" class="btn btn-sm btn-primary">
+                            搜索
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </form>
+    {% endblock %}
+</div>
+
+<table class="table table-striped table-bordered table-hover dataTable no-footer" id="user_priv_table" >
+    <thead>
+        <tr>
+            <th class="text-center">
+                <input id="" type="checkbox" class="ipt_check_all">
+            </th>
+            <th class="text-center">用户名</th>
+            <th class="text-center">ALL权限</th>
+            <th class="text-center">DDL权限</th>
+            <th class="text-center">DML权限</th>
+            <th class="text-center">操作</th>
+        </tr>
+    </thead>
+    <tbody id="user_priv_dynamic">
+    </tbody>
+</table>
+<div style='text-align:center;' id="user_priv_notfound"></div>
+
+<div class="row m-t">
+    <div class="col-md-4">
+        <!--<div class="form-inline">-->
+            <!--<div class="input-group">-->
+                <!--<select class="form-control m-b" style="width: auto;font-size:12px;padding: 2px;" id="slct_bulk_update">-->
+                    <!--<option value="active">批量操作</option>-->
+                    <!--<option value="delete">批量删除</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="input-group">-->
+                <!--<div class="input-group-btn">-->
+                    <!--<a id='btn_bulk_update' style="height: 32px;" type="submit" class="btn btn-sm btn-primary">-->
+                        <!--提交-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="col-md-8">
+        <div id="example_user_priv" style="text-align: center" class="pull-right">
+            <div id="user_priv_notes" style="text-align: center;padding-top: 8px;padding-right: 6px;" class="pull-left"></div>
+            <ul id="user_priv_pageLimit" style="margin: 0 0;"></ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block content_bottom_left %}
+<script src="{{ url_for('static', filename='js/bootstrap-paginator.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user/user_priv_list.js') }}"></script>
+{% endblock %}
+
+
+

@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <!--<span class="text text-primary"><b>{{ asset_detail_result[0][1] }}</b></span>-->
+                        <h5>{{ asset_detail_result[0][1] }}</h5>
+                        <div class="ibox-tools">
+                            <a class="" href="{{ url_for('assets.asset_detail',id=asset_detail_result[0][0] ) }}">
+                                <i class="fa fa-refresh"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content ibox-heading">
+                        <h3>主机详细信息</h3>
+                        <small><i class="fa fa-map-marker"></i> 展示此主机的物理和逻辑信息(待完善).</small>
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <div class="text-left">
+                                <table class="table">
+                                    <tr>
+                                        <td class="text-navy">主机名</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">IP</td>
+                                        <td>{{ asset_detail_result[0][1] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">其他IP</td>
+                                        <td>
+                                            <table class="table">
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">远控IP</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">主机组</td>
+                                        <td>
+                                             <table class="table">
+                                             </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">数据库</td>
+                                        <td>
+                                            {% if asset_detail_result[0][2] == 0 %}
+                                                <span class="label label-info" style="font-size:12px;">MySQL</span>
+                                            {% elif asset_detail_result[0][2] == 1 %}
+                                                <span class="label label-info" style="font-size:12px;">ORACLE</span>
+                                            {% elif asset_detail_result[0][2] == 1 %}
+                                                <span class="label label-info" style="font-size:12px;">Redis</span>
+                                            {% elif asset_detail_result[0][2] == 1 %}
+                                                <span class="label label-info" style="font-size:12px;">MongoDB</span>
+                                            {% else %}
+                                                <span class="label label-info" style="font-size:12px;">其他</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">系统账号</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">端口</td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">数据库账号</td>
+                                        <td>{{ asset_detail_result[0][3] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">数据库端口</td>
+                                        <td>{{ asset_detail_result[0][4] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">机房</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">硬件厂商型号</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">CPU</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">内存</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">硬盘</td>
+                                        <td>
+                                            <table class="table">
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">资产编号</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">SN</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">主机类型</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">系统版本</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">系统平台</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">运行环境</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">机器状态</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">机柜号</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">机柜位置</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">激活</td>
+                                        <td>
+                                            {% if asset_detail_result[0][5] == 0 %}
+                                                <span class="label label-primary" style="font-size:12px;">已激活</span>
+                                            {% else %}
+                                                <span class="label label-warning-light" style="font-size:12px;">未激活</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">添加日期</td>
+                                        <td>{{ asset_detail_result[0][6] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">备注</td>
+                                        <td>{{ asset_detail_result[0][7] }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ asset_detail_result[0][1] }}包含的数据库</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content ibox-heading">
+                        <h3>主机所有已添加的数据库</h3>
+                        <small><i class="fa fa-map-marker"></i> 包含了此主机所有已添加数据库及其状态、添加时间等.</small>
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <div class="text-left">
+                                {% if asset_db_result %}
+                                    <table class="table">
+                                    <td class="text-navy">数据库名</td>
+                                    <td class="text-navy">状态</td>
+                                    <td class="text-navy">表数量</td>
+                                    <td class="text-navy">新增时间</td>
+                                    {% for asset_db in asset_db_result %}
+                                        <tr>
+                                            <td class="text-navy">{{ asset_db[0] }}</td>
+                                            <td class="text-navy">
+                                                {% if asset_db[1] == 0 %}
+                                                    <span class="label label-primary" style="font-size:12px;">已激活</span>
+                                                {% else %}
+                                                    <span class="label label-warning-light" style="font-size:12px;">未激活</span>
+                                                {% endif %}
+                                            </td>
+                                            <td></td>
+                                            <td>{{ asset_db[2] }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </table>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ibox-title">
+                        <h5>资产修改记录</h5>
+                        <a href="{{ url_for('assets.asset_edit',id=asset_detail_result[0][0]) }}" data-toggle="tooltip" class="text-success pull-center" data-placement="bottom" title="修改">&nbsp&nbsp&nbsp&nbsp点击修改</a>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content ibox-heading">
+                        <h3>主机修改记录</h3>
+                        <small><i class="fa fa-map-marker"></i> 包含了此主机所有历史修改记录.</small>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="feed-activity-list">
+                            <p class="text-center">(暂无)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}
+{% block custom_foot_js %}
+<!--<script src="{{ url_for('static', filename='js/bootstrap-paginator.min.js') }}"></script>-->
+<!--<script src="{{ url_for('static', filename='js/user/user_profile.js') }}"></script>-->
+{% endblock %}
+
+

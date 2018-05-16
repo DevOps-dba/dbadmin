@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> DBadmin </title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/dbadmin_icon_small.png') }}" type="image/x-icon">
+    {% include '_head_css_js.html' %}
+    {% import "bootstrap/wtf.html" as wtf %}
+    <link href="{{ url_for('static', filename='css/dbadmin.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/dbadmin.js') }}"></script>
+    <style>
+        .captcha {
+             float: right;
+         }
+    </style>
+</head>
+
+<body class="gray-bg">
+    <div class="loginColumns animated fadeInDown">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="font-bold">欢迎使用DBadmin自动化系统</h2>
+                <p>
+                    DBadmin是一款基于Python的Flask框架开发, 助力互联网企业高效数据库管理(用户、资产、监控、审计)的DevOps系统
+                </p>
+                <p>
+                    开发者在过往的DBA工作中, 深深感到传统运维的冗余性和复杂性, 至此DBadmin应运而生
+                </p>
+                <p>
+                    专注自动化运维，努力打造 易用、稳定、安全、自动化 的自动化系统, 这是我不懈的追求和动力
+                </p>
+                <p>
+                    <small>改变世界，从一点点开始。</small>
+                </p>
+
+            </div>
+            <div class="col-md-6">
+                <div class="ibox-content">
+                    <div><img src="{{ url_for('static', filename='img/dbadmin_icon_small.png') }}" width="60" height="60"> <span class="font-bold text-center" style="font-size: 24px; font-family: inherit">注册新用户</span></div>
+                    <div class="text-center" style="position: absolute;right: 35px;">已有账号？<a href="{{ url_for('auth.login') }}">点此登录></a></div>
+                    <form class="m-t" role="form" method="post" action="">
+                        <p class="red-fonts" id="errormsg">
+                        <script>
+                            if ( {{ error_code }} == 1 ){
+                                document.getElementById('errormsg').innerHTML = "该用户已经存在！";
+                            }
+                            else if ( {{ error_code }} == 2 ) {
+                                document.getElementById('errormsg').innerHTML = "录入数据库报错！";
+                            }
+                            else if ( {{ error_code }} == 3 ) {
+                                document.getElementById('errormsg').innerHTML = "密码过于简单!";
+                            }
+                        </script>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="register_username" placeholder="用户名(英文字符)" required="" oninvalid="setCustomValidity('用户名必须填写!');" oninput="setCustomValidity('');">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="register_password" placeholder="密码(不少于6位的数字和字符组合)" required="" oninvalid="setCustomValidity('密码必须填写!');" oninput="setCustomValidity('');">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="register_department" id="register_department" required>
+                                <option selected="selected" value="">选择所属部门</option>
+                                {% for depart in departForm %}
+                                    <option value="{{ depart[0] }}" name="register_department">{{ depart[1] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="register_name" placeholder="真实姓名(中文名)" required="" oninvalid="setCustomValidity('姓名必须填写!');" oninput="setCustomValidity('');">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="register_question" placeholder="谁是公司里你最仰慕的人?(密保问题)" required="" oninvalid="setCustomValidity('答案必须填写!');" oninput="setCustomValidity('');">
+                        </div>
+                        <button type="submit" class="btn btn-primary block full-width m-b">注册</button>
+                        <p class="text-muted text-center">
+                        </p>
+                    </form>
+                    <p class="m-t">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-6">
+                Copyright 系统运维部-钱坤 © 2017-2018
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

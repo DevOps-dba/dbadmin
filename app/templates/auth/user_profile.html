@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="ibox float-e-margins" id="all">
+
+                <div class="ibox-title">
+                    <h5> 个人信息</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url_for('auth.user_profile_edit') }}">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ibox-content">
+                    <table class="table">
+                        <tbody>
+                        <!--<tr class="no-borders-tr">-->
+                            <!--<td colspan="2">-->
+                                <!--<img src="#" class="img-circle" width="64" height="64">-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <tr>
+                            <td class="text-navy">用户ID:</td>
+                            <td><b>{{ userinfo_result[0][0] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy" width="20%">用户名:</td>
+                            <td><b>{{ userinfo_result[0][1] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">姓名:</td>
+                            <td><b>{{ userinfo_result[0][2] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">部门:</td>
+                            <td><b>{{ userinfo_result[0][3] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">状态:</td>
+                            {% if userinfo_result[0][4] == 1 %}
+                            <td class="text-navy"><b>已激活</b></td>
+                            {% else %}
+                            <td><b>未激活</b></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td class="text-navy">注册时间:</td>
+                            <td><b>{{ userinfo_result[0][5] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">最后更新时间:</td>
+                            <td><b>{{ userinfo_result[0][6] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">最后访问时间:</td>
+                            <td><b>{{ userinfo_result[0][7] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">角色:</td>
+                            {% if userinfo_result[0][8] == 1 %}
+                            <td><span class='label label-primary'>超级管理员</span></td>
+                            {% else %}
+                            <td><span class='label label-info'>普通用户</span></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td class="text-navy">密码验证答案:</td>
+                            <td><b>{{ userinfo_result[0][9] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">微信号:</td>
+                            <td><b>{{ userinfo_result[0][10] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">钉钉号:</td>
+                            <td><b>{{ userinfo_result[0][11] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">邮箱地址:</td>
+                            <td><b>{{ userinfo_result[0][12] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">手机号:</td>
+                            <td><b>{{ userinfo_result[0][13] }}</b></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="ibox float-e-margins" id="all">
+
+                <div class="ibox-title">
+                    <h5> 个人信息</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url_for('auth.user_profile_edit') }}">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ibox-content">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td class="text-navy">用户ID:</td>
+                            <td><b>{{ userinfo_result[0][0] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy" width="20%">用户名:</td>
+                            <td><b>{{ userinfo_result[0][1] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">姓名:</td>
+                            <td><b>{{ userinfo_result[0][2] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">部门:</td>
+                            <td><b>{{ userinfo_result[0][3] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">状态:</td>
+                            {% if userinfo_result[0][4] == 1 %}
+                            <td class="text-navy"><b>已激活</b></td>
+                            {% else %}
+                            <td class="text-danger"><b>未激活</b></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td class="text-navy">注册时间:</td>
+                            <td><b>{{ userinfo_result[0][5] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">最后更新时间:</td>
+                            <td><b>{{ userinfo_result[0][6] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">最后访问时间:</td>
+                            <td><b>{{ userinfo_result[0][7] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">角色:</td>
+                            {% if userinfo_result[0][8] == 1 %}
+                            <td><span class='label label-primary'>超级管理员</span></td>
+                            {% else %}
+                            <td><span class='label label-info'>普通用户</span></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td class="text-navy">密码验证答案:</td>
+                            <td><b>{{ userinfo_result[0][9] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">微信号:</td>
+                            <td><b>{{ userinfo_result[0][10] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">钉钉号:</td>
+                            <td><b>{{ userinfo_result[0][11] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">邮箱地址:</td>
+                            <td><b>{{ userinfo_result[0][12] }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-navy">手机号:</td>
+                            <td><b>{{ userinfo_result[0][13] }}</b></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4" style="padding-left: 0;padding-right: 0">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-info-circle"></i> 快速修改
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody>
+                        <tr class="no-borders-tr">
+                            <td width="50%">激活中:</td>
+                            <td><span class="pull-right">
+                                <div class="switch">
+                                    <div class="onoffswitch">
+                                        {% if userinfo_result[0][4] == 1 %}
+                                        <input type="checkbox" checked  class="onoffswitch-checkbox" id="is_active">
+                                        {% else %}
+                                        <input type="checkbox" class="onoffswitch-checkbox" id="is_active">
+                                        {% endif %}
+                                        <label class="onoffswitch-label" for="is_active">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </span></td>
+                        </tr>
+                        <tr class="no-borders-tr">
+                            <td>重置密码:</td>
+                            <td>
+                                <span class="pull-right">
+                                    <a type="button" id="updatePassword" class="btn btn-primary btn-xs" style="width: 54px">重置</a>
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <i class="fa fa-info-circle"></i> 可操作数据库（待开发）
+                </div>
+                <div class="panel-body">
+                    <table class="table group_edit">
+                        <tbody>
+                        <form>
+                            <tr>
+                                <td colspan="2" class="no-borders">
+                                    <select data-placeholder="添加到用户组" id="groups_selected" class="select2" style="width: 100%" multiple="" tabindex="4">
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="no-borders">
+                                    <button type="button" class="btn btn-info btn-small" id="btn_join_group">加入</button>
+                                </td>
+                            </tr>
+                        </form>
+                        <tr>
+                          <td >
+                              <b class="bdg_group" data-gid=514d0c70-57b4-407f-a9b9-675ed853bb45>Default</b>
+                          </td>
+                          <td>
+                              <button class="btn btn-danger pull-right btn-xs btn_leave_group" type="button"><i class="fa fa-minus"></i></button>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--重置密码模态框 modal-->
+	<div class="row">
+		<div class="modal" id="updatePwdModal" tabindex="-1" role="dialog" aria-labelledby="updatePwdLabel" aria-hidden="true" data-backdrop="static" style="top:150px">
+			<div class="modal-dialog" style="width: 450px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="updatePwdLabel">
+							修改密码
+						</h4>
+					</div>
+					<form role="form" method="post" id="editHost" class="main form-horizontal" >
+						<div class="modal-body">
+							<div class="form-group" >
+								 <label class="col-sm-3 control-label">新密码</label>
+								 <div class="col-sm-7">
+									 <input type="text" class="form-control" id="newPassword" name="newPassword" placeholder="" value="" disabled required oninvalid="setCustomValidity('必须填写新密码！');" oninput="setCustomValidity('');"/>
+                                     <a type="button" id="autoPassword" class="btn btn-primary btn-xs" style="width: 80px">点击获取</a>
+								 </div>
+							</div>
+						</div>
+						<div class="modal-footer" style="text-align: center;">
+							<a type="button" id="updatePwdSubmit" class="btn btn-info">确认修改</a>
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock %}
+{% block custom_foot_js %}
+<!--<script src="{{ url_for('static', filename='js/bootstrap-paginator.min.js') }}"></script>-->
+<script src="{{ url_for('static', filename='js/user/user_profile.js') }}"></script>
+{% endblock %}
+
+
