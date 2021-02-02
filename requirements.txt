@@ -4,7 +4,7 @@ apipkg==1.4
 Babel==0.9.6
 beautifulsoup4==4.4.1
 billiard==3.5.0.3
-bleach==1.5.0
+bleach==3.3.0
 blinker==1.4
 celery==4.1.0
 chardet==2.2.1
