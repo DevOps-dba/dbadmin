@@ -43,7 +43,7 @@ markerlib==0.6.0
 MarkupSafe==0.23
 mccabe==0.5.2
 msgpack-python==0.4.6
-numpy==1.11.0
+numpy==1.22.0
 PasteDeploy==1.5.2
 pep8==1.7.0
 pep8-naming==0.4.1
